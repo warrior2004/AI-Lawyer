@@ -9,12 +9,10 @@ project_name = "AI_Lawyer"
 list_of_folders = ["vectorstore","data"]
 list_of_files = [
     f"src/__init__.py",
-    f"src/connect_memory_with_llm.py",
-    f"src/create_memory_for_llm.py",
+    f"src/vector_database.py",
+    f"src/rag_pipeline.py",
     f"src/logger.py",
     f"src/exception.py",
-    f"templates/index.html",
-    f"static/styles.css",
     f"app.py",
     f"setup.py",
     "Dockerfile",
