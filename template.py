@@ -19,7 +19,8 @@ list_of_files = [
     f"setup.py",
     "Dockerfile",
     ".dockerignore",
-    "wscgi.py"
+    "wscgi.py",
+    "requirements.txt"
 ]
 
 for folder in list_of_folders:
