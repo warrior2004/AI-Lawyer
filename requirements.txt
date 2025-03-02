@@ -7,3 +7,5 @@ langchain_groq
 faiss-cpu
 pdfplumber
 pypdf
+
+# -e .
