@@ -17,7 +17,6 @@ list_of_files = [
     f"setup.py",
     "Dockerfile",
     ".dockerignore",
-    "wscgi.py",
     "requirements.txt"
 ]
 
