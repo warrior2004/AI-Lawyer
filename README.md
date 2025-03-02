@@ -1,2 +1,2 @@
 # AI Lawyer
-This is a reasoning AI chatbot that usese Deepseek R1
+This is a reasoning AI chatbot that uses Deepseek R1
