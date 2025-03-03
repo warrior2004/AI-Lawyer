@@ -8,3 +8,16 @@ __pycache__/
 .idea/
 data/
 vectorstore/
+
+# Exclude build artifacts
+build/
+dist/
+*.egg-info/
+
+# Exclude test directories
+tests/
+test/
+
+# Exclude documentation
+docs/
+*.md
