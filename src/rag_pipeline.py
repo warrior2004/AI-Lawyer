@@ -8,16 +8,25 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.vectorstores import FAISS
 from pathlib import Path
+from langsmith import traceable
 
 # Load environment variables
 load_dotenv()
 
 # Step 1: Load API Key
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+LANGCHAIN_API_KEY = os.environ.get("LANGCHAIN_API_KEY")
 
 if not GROQ_API_KEY:
     logging.error("GROQ_API_KEY is not set. Please check your environment variables.")
     raise ValueError("GROQ_API_KEY is missing!")
+
+if not LANGCHAIN_API_KEY:
+    logging.warning("LANGCHAIN_API_KEY is not set. LangSmith tracing might not work correctly.")
+
+# Enable LangSmith Tracing
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_API_KEY"] = LANGCHAIN_API_KEY
 
 # Step 2: Initialize LLM (DeepSeek R1 with Groq)
 logging.info("Initializing DeepSeek-r1 model")
@@ -35,6 +44,7 @@ except Exception as e:
     raise CustomException(e, sys)
 
 # Step 4: Retrieve Documents
+@ traceable
 def retrieve_docs(query):
     """Retrieve relevant documents from the FAISS database."""
     try:
@@ -48,6 +58,7 @@ def retrieve_docs(query):
         raise CustomException(e, sys)
 
 # Step 5: Generate Context from Retrieved Docs
+@traceable
 def get_context(documents):
     """Generate context by extracting text from retrieved documents."""
     try:
@@ -74,6 +85,7 @@ Answer:
 """
 
 # Step 7: Answer the Query
+@traceable
 def answer_query(documents, model, query):
     """Generate an answer using the LLM based on retrieved documents."""
     try:
